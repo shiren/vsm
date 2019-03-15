@@ -2,6 +2,7 @@
   <div>
     <h1>TODO LIST</h1>
     <input type="text" v-model="newTodoTitle" /><button @click="addTodo">추가</button>
+    <p>{{ todoCount }} / {{ doneTodoCount }}</p>
     <todolist :todos="todos"></todolist>
   </div>
 </template>
@@ -33,6 +34,12 @@ export default {
   computed: {
     todos() {
       return this.$store.state.todos;
+    },
+    todoCount() {
+      return this.$store.getters.todoCount;
+    },
+    doneTodoCount() {
+      return this.$store.getters.doneTodoCount;
     }
   },
   methods: {

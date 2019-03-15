@@ -17,5 +17,13 @@ export default new Vuex.Store({
         completed: false
       }
     ]
-  }  
+  },
+  getters: {
+    todoCount(state) {
+      return state.todos.filter(todo => !todo.completed).length;
+    },
+    doneTodoCount(state) {
+      return state.todos.filter(todo => todo.completed).length;
+    }
+  }
 });
