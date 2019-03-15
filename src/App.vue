@@ -30,6 +30,11 @@ export default {
       newTodoTitle: ''
     };
   },
+  computed: {
+    todos() {
+      return this.$store.state.todos;
+    }
+  },
   methods: {
     addTodo() {
       console.log(this.newTodoTitle);
