@@ -15,18 +15,13 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {
-          id: 'ID1',
-          title: 'AAA'
-        },
-        {
-          id: 'ID2',
-          title: 'BBB'
-        }
-      ],
       newTodoTitle: ''
     };
+  },
+  computed: {
+    todos() {
+      return this.$store.state.todos;
+    }
   },
   methods: {
     addTodo() {
