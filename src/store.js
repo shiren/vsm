@@ -41,6 +41,11 @@ export default new Vuex.Store({
       const todo = state.todos.find(todo => todo.id == id);
       const index = state.todos.indexOf(todo);
       state.todos.splice(index, 1);
+    },
+    updateTodoTitle(state, {id, title}) {
+      const todo = state.todos.find(todo => todo.id == id);
+      const index = state.todos.indexOf(todo);
+      state.todos[index].title = title;
     }
   }
 });
