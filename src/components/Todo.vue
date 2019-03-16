@@ -29,13 +29,13 @@ export default {
         return this.title;
       },
       set(value) {
-        this.$store.commit('updateTodoTitle', {id: this.id, title: value});
+        this.$store.dispatch('updateTodoTitle', {id: this.id, title: value});
       }
     }
   },
   methods: {
     deleteTodo() {
-      this.$store.commit('deleteTodo', this.id);
+      this.$store.dispatch('deleteTodo', this.id);
     }
   }
 };

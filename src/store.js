@@ -27,6 +27,12 @@ export default new Vuex.Store({
     },
     totalCount(state, getters) {
       return getters.todoCount + getters.doneTodoCount;
+    },
+    getIndexByTodoId(state) {
+      return id => {
+        const todo = state.todos.find(todo => todo.id === id);
+        return state.todos.indexOf(todo);
+      };
     }
   },
   mutations: {
@@ -37,15 +43,22 @@ export default new Vuex.Store({
         id: Date.now().toString()
       });
     },
-    deleteTodo(state, id) {
-      const todo = state.todos.find(todo => todo.id == id);
-      const index = state.todos.indexOf(todo);
+    deleteTodo(state, index) {
       state.todos.splice(index, 1);
     },
-    updateTodoTitle(state, {id, title}) {
-      const todo = state.todos.find(todo => todo.id == id);
-      const index = state.todos.indexOf(todo);
+    updateTodoTitle(state, {index, title}) {
       state.todos[index].title = title;
+    }
+  },
+  actions: {
+    deleteTodo({getters, commit}, id) {
+      commit('deleteTodo', getters.getIndexByTodoId(id));
+    },
+    updateTodoTitle({getters, commit}, {id, title}) {
+      commit('updateTodoTitle', {
+        index: getters.getIndexByTodoId(id),
+        title
+      });
     }
   }
 });
