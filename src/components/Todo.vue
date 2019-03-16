@@ -23,10 +23,15 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      inputValue: this.title
-    };
+  computed: {
+    inputValue: {
+      get() {
+        return this.title;
+      },
+      set(value) {
+        this.$store.commit('updateTodoTitle', {id: this.id, title: value});
+      }
+    }
   },
   methods: {
     deleteTodo() {
