@@ -2,7 +2,7 @@
   <div>
     <input type="checkbox" :checked="completed" />
     <input type="text" v-model="inputValue" />
-    <button>삭제</button>
+    <button @click="deleteTodo">삭제</button>
   </div>
 </template>
 <script>
@@ -27,6 +27,11 @@ export default {
     return {
       inputValue: this.title
     };
+  },
+  methods: {
+    deleteTodo() {
+      this.$store.commit('deleteTodo', this.id);
+    }
   }
 };
 </script>
