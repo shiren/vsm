@@ -47,7 +47,8 @@ export default {
   },
   methods: {
     addTodo() {
-      console.log(this.newTodoTitle);
+      this.$store.commit('addTodo', this.newTodoTitle);
+      this.newTodoTitle = '';
     }
   }
 };

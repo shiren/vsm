@@ -28,5 +28,19 @@ export default new Vuex.Store({
     totalCount(state, getters) {
       return getters.todoCount + getters.doneTodoCount;
     }
+  },
+  mutations: {
+    addTodo(state, title) {
+      state.todos.push({
+        title: title,
+        completed: false,
+        id: Date.now().toString()
+      });
+    },
+    deleteTodo(state, id) {
+      const todo = state.todos.find(todo => todo.id == id);
+      const index = state.todos.indexOf(todo);
+      state.todos.splice(index, 1);
+    }
   }
 });
