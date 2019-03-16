@@ -1,22 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import api from '@/api';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    todos: [
-      {
-        id: 'ID1',
-        title: 'AAA',
-        completed: false
-      },
-      {
-        id: 'ID2',
-        title: 'BBB',
-        completed: false
-      }
-    ]
+    todos: []
   },
   getters: {
     todoCount(state) {
@@ -36,12 +27,12 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    addTodo(state, title) {
-      state.todos.push({
-        title: title,
-        completed: false,
-        id: Date.now().toString()
-      });
+    addTodo(state, todo) {
+      if (!todo.id) {
+        todo.id = Date.now().toString();
+      }
+
+      state.todos.push(todo);
     },
     deleteTodo(state, index) {
       state.todos.splice(index, 1);
@@ -58,6 +49,13 @@ export default new Vuex.Store({
       commit('updateTodoTitle', {
         index: getters.getIndexByTodoId(id),
         title
+      });
+    },
+    fetchTodos({commit}) {
+      api.getTodos().then(data => {
+        data.forEach(todo => {
+          commit('addTodo', todo);
+        });
       });
     }
   }

@@ -38,6 +38,9 @@ export default {
       this.$store.commit('addTodo', this.newTodoTitle);
       this.newTodoTitle = '';
     }
+  },
+  created() {
+    this.$store.dispatch('fetchTodos');
   }
 };
 </script>
