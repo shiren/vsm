@@ -18,11 +18,13 @@ export default {
       todos: [
         {
           id: 'ID1',
-          title: 'AAA'
+          title: 'AAA',
+          completed: false
         },
         {
           id: 'ID2',
-          title: 'BBB'
+          title: 'BBB',
+          completed: true
         }
       ],
       newTodoTitle: ''
