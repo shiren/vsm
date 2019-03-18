@@ -14,13 +14,7 @@ Vue.use(Vuex);
 const counterStore = new Vuex.Store({
   strict: true,
   state: {
-    count: 1,
-    createdTime: new Date()
-  },
-  getters: {
-    detail: state => {
-      return `createdTime: ${state.createdTime}`;
-    }
+    count: 1
   },
   mutations: {
     increment(state, amount) {
@@ -30,13 +24,10 @@ const counterStore = new Vuex.Store({
 });
 
 const Counter = {
-  template: '<div>{{count}}<p>{{detail}}</p></div>',
+  template: '<div>{{count}}</div>',
   computed: {
     count() {
       return this.$store.state.count;
-    },
-    detail() {
-      return this.$store.getters.detail;
     }
   }
 };
